@@ -1,12 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>formulário</title>
 </head>
+
 <body>
+    <form id="form_cadastro">
+        <label for="primeiro_nome">Primeiro Nome:</label>
+        <input type="text" id="primeiro_nome" name="primeiro_nome">
+        <label for="ultimo_nome">Ultimo Nome:</label>
+        <input type="text" id="ultimo_nome" name="ultimo_nome">
+        <div id="lista_estado_civil">
+            <input type="radio" id="solteiro" name="estado_civil" value="solteiro">
+            <label for="solteiro">Solteiro</label><br>
+            <input type="radio" id="casado" name="estado_civil" value="casado">
+            <label for="casado">Casado</label><br>
+            <input type="radio" id="união_estavel" name="estado_civil" value="união estavel">
+            <label for="união estavel">União estavel</label>
+        </div>
+        <div id="lista_redes_sociais">
+            <input type="checkbox" name="facebook" id="facebook" value="facebook">
+            <label for="facebook">Facebook</label><br>
+            <input type="checkbox" name="instagram" id="instagram" value="instagram">
+            <label for="instagram">Instagram</label><br>
+            <input type="checkbox" name="tiktok" id="tiktok" value="tiktok">
+            <label for="tiktok">Tiktok</label><br>
+            <input type="checkbox" name="twitter" id="twitter" value="twitter">
+            <label for="twitter">Twitter</label><br>
+        </div>
+        <input type="submit" value="Enviar">
+    </form>
+    <script>
+        let form = document.getElementById("form_cadastro")
+      console.log(form)
+      
+      form.addEventListener('submit', (event) =>{
+        event.preventDefault()
+        let primeiro_nome = document.getElementById("primeiro_nome")
+        let ultimo_nome = document.getElementById("ultimo_nome")
+        let nome_completo = primeiro_nome.value + " " + ultimo_nome.value
+        let estado_civil = document.getElementsByName("estado_civil")
+        let estado_civil_atual
+        for (let i = 0; i<estado_civil.length; i++){
+            if(estado_civil[i].checked){
+                estado_civil_atual = estado_civil[i].value
+            }
+        }
+        console.log(estado_civil_atual)
+
     
+        let tem_facebook = document.getElementById("facebook").checked
+        let tem_instagram = document.getElementById("instagram").checked
+        let tem_tiktok = document.getElementById("tiktok").checked
+        let tem_twitter = document.getElementById("twitter").checked
+        let tem_redes_sociais = ""
+        //se tem facebook faça alguma coisa
+        if(tem_facebook){
+            tem_redes_sociais = tem_redes_sociais + "Usa Facebook,"
+        } if(tem_instagram){
+            tem_redes_sociais = tem_redes_sociais + "Usa instagram,"
+        } if(tem_tiktok){
+            tem_redes_sociais = tem_redes_sociais + "Usa tiktok,"
+        } if(tem_twitter){
+            tem_redes_sociais = tem_redes_sociais + "Usa twitter,"
+        } 
+        console.log(tem_redes_sociais)
+        let informacoes = "Nome Completo: "+ nome_completo +
+        "\nEstado Civil:" + estado_civil_atual +
+        "\nRedes Sociais:" + tem_redes_sociais
+        alert(informacoes)
+      })
+    </script>
 </body>
+
 </html>
